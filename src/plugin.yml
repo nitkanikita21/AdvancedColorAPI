@@ -1,0 +1,7 @@
+name: AdvancedColorAPI
+version: 0.1
+main: me.NitkaNikita.AdvancedColorAPI.Main
+author: NitkaNikita
+commands:
+  gradient:
+    usage: /gradient
