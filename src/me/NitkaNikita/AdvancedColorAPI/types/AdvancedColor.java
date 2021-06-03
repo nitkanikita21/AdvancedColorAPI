@@ -1,5 +1,6 @@
 package me.NitkaNikita.AdvancedColorAPI.types;
 
+import javax.management.DescriptorKey;
 import java.awt.*;
 
 public class AdvancedColor {
@@ -14,7 +15,9 @@ public class AdvancedColor {
         color = hex2Rgb(hex);
     }
 
-
+    public static Color hsl2rgb(float h, float s, float l){
+        return Color.getHSBColor(h,s,l);
+    }
     public static String rgb2Hex(int r, int g, int b) {
         return String.format("%02x%02x%02x", r, g, b);
     }

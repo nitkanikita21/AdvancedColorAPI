@@ -8,17 +8,19 @@ import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
 
-public class gradient implements CommandExecutor {
+public class iterating implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] args) {
 
         ArrayList<AdvancedColor> l = new ArrayList<>();
-        for (int i = 2; i < args.length; i++) {
+        for (int i = 0; i < args.length; i++) {
             l.add(new AdvancedColor(args[i]));
         }
-        commandSender.spigot().sendMessage(GradientedText.generateGradient(
-                args[1],l,Double.parseDouble(args[0])
-        ).getFullText());
+        for(double i = 0; i < 1; i = i+0.01){
+            commandSender.spigot().sendMessage(GradientedText.generateGradient(
+                    "███████████████████████████████████",l,i
+                    ).getFullText());
+        }
 
         return true;
     }

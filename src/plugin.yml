@@ -1,7 +1,13 @@
 name: AdvancedColorAPI
 version: 0.1
-main: me.NitkaNikita.AdvancedColorAPI.Main
+main: me.NitkaNikita.AdvancedColorAPI.SpigotMain
 author: NitkaNikita
+softdepend:
+  - PlaceholderAPI
 commands:
   gradient:
     usage: /gradient
+  iterator:
+    usage: /iterator
+  rainbow:
+    usage: /rainbow
