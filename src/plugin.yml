@@ -5,9 +5,5 @@ author: NitkaNikita
 softdepend:
   - PlaceholderAPI
 commands:
-  gradient:
-    usage: /gradient
-  iterator:
-    usage: /iterator
-  rainbow:
-    usage: /rainbow
+  ac:
+    usage: /ac

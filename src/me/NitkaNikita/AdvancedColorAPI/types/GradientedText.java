@@ -23,6 +23,8 @@ public class GradientedText {
             ArrayList<AdvancedColor> colors,
             double X
     ){
+        text = text.replaceAll("&","§");
+
         GradientedText gradient = new GradientedText();
 
 

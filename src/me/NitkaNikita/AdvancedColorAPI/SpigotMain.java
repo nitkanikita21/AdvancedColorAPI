@@ -1,8 +1,6 @@
 package me.NitkaNikita.AdvancedColorAPI;
 
-import me.NitkaNikita.AdvancedColorAPI.commands.gradient;
-import me.NitkaNikita.AdvancedColorAPI.commands.iterating;
-import me.NitkaNikita.AdvancedColorAPI.commands.rainbow;
+import me.NitkaNikita.AdvancedColorAPI.placeholders.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,15 +10,13 @@ public class SpigotMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getCommand("gradient").setExecutor(new gradient());
-        getCommand("iterator").setExecutor(new iterating());
-        getCommand("rainbow").setExecutor(new rainbow());
+        getCommand("ac").setExecutor(null);
         General.logger = getLogger();
         General.On(SessionType.SPIGOT);
         i = this;
 
         if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
-            new PapiHook(this,"ac").hook();
+            new Placeholder(this,"ac").hook();
         }
     }
 }
