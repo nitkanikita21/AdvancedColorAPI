@@ -1,6 +1,8 @@
-package me.NitkaNikita.AdvancedColorAPI;
+package me.NitkaNikita.AdvancedColorAPI.api;
 
-import me.NitkaNikita.AdvancedColorAPI.placeholders.Placeholder;
+import me.NitkaNikita.AdvancedColorAPI.api.commands.CommandManager;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -10,13 +12,13 @@ public class SpigotMain extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getCommand("ac").setExecutor(null);
+        getCommand("ac").setExecutor(new CommandManager());
         General.logger = getLogger();
         General.On(SessionType.SPIGOT);
         i = this;
 
         if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
-            new Placeholder(this,"ac").hook();
+            new Placeholder().register();
         }
     }
 }

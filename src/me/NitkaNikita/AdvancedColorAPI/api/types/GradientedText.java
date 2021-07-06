@@ -1,9 +1,14 @@
-package me.NitkaNikita.AdvancedColorAPI.types;
+package me.NitkaNikita.AdvancedColorAPI.api.types;
 
+import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
+import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
 
 public class GradientedText {
     private ArrayList<TextComponent> components = new ArrayList<>();
@@ -23,7 +28,33 @@ public class GradientedText {
             ArrayList<AdvancedColor> colors,
             double X
     ){
-        text = text.replaceAll("&","§");
+
+        String[] split = text.split("");
+        //ArrayList<String> TextElements = new ArrayList<>();
+        //int counter = 0;
+        //while (counter < text.length()){
+        //    String s = split[counter];
+        //    if(s.equals("§")){
+        //        String adding = s;
+        //        adding += split[counter+1];
+        //        if(counter+2 < split.length){
+        //            adding += split[counter+2];
+        //        }
+        //        TextElements.add(adding);
+        //    }else {
+        //        TextElements.add(s);
+        //    }
+        //}
+
+        List<String> allMatches = new ArrayList<String>();
+
+        //"(&[0-9a-fA-Fk-orK-OR])?."
+
+        for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("(§[0-9a-fA-Fk-orK-OR])?."), text)) {
+            allMatches.add(match.group());
+        }
+
+
 
         GradientedText gradient = new GradientedText();
 
@@ -38,7 +69,8 @@ public class GradientedText {
             int g = ic.color.getGreen();
             int b = ic.color.getBlue();
 
-            TextComponent comp = new TextComponent(text.split("")[i]);
+            TextComponent comp = new TextComponent(split[i]);
+
             comp.setColor(ChatColor.of("#"+AdvancedColor.rgb2Hex(r,g,b)));
 
             gradient.components.add(comp);

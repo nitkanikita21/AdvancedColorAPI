@@ -1,6 +1,6 @@
 name: AdvancedColorAPI
 version: 0.1
-main: me.NitkaNikita.AdvancedColorAPI.SpigotMain
+main: me.NitkaNikita.AdvancedColorAPI.api.SpigotMain
 author: NitkaNikita
 softdepend:
   - PlaceholderAPI

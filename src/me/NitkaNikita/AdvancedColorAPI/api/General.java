@@ -1,4 +1,4 @@
-package me.NitkaNikita.AdvancedColorAPI;
+package me.NitkaNikita.AdvancedColorAPI.api;
 
 import org.bukkit.ChatColor;
 

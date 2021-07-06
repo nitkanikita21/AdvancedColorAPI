@@ -1,13 +1,12 @@
-package me.NitkaNikita.AdvancedColorAPI.placeholders.animations;
+package me.NitkaNikita.AdvancedColorAPI.api.placeholders.animations;
 
-import me.NitkaNikita.AdvancedColorAPI.SpigotMain;
-import me.NitkaNikita.AdvancedColorAPI.placeholders.Animation;
-import me.NitkaNikita.AdvancedColorAPI.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.types.GradientedText;
+import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Animation;
+import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
+import me.NitkaNikita.AdvancedColorAPI.api.types.GradientedText;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 
-import javax.xml.soap.Text;
 import java.util.ArrayList;
 import java.util.Collections;
 

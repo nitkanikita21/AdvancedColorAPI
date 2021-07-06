@@ -1,10 +1,11 @@
-package me.NitkaNikita.AdvancedColorAPI.placeholders;
+package me.NitkaNikita.AdvancedColorAPI.api.placeholders;
 
-import me.NitkaNikita.AdvancedColorAPI.SpigotMain;
-import me.NitkaNikita.AdvancedColorAPI.placeholders.animations.Moving;
-import me.NitkaNikita.AdvancedColorAPI.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.types.GradientedText;
-import me.clip.placeholderapi.PlaceholderAPI;
+import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.animations.Moving;
+import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
+import me.NitkaNikita.AdvancedColorAPI.api.types.GradientedText;
+import me.clip.placeholderapi.PlaceholderHook;
+import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import me.clip.placeholderapi.external.EZPlaceholderHook;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -13,7 +14,7 @@ import org.bukkit.plugin.Plugin;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Placeholder extends EZPlaceholderHook {
+public class Placeholder extends PlaceholderExpansion {
 
     final float[] h = {0f};
     float s = 1f;
@@ -33,9 +34,7 @@ public class Placeholder extends EZPlaceholderHook {
 
     ArrayList<AdvancedColor> colors = new ArrayList<>();
 
-    public Placeholder(Plugin plugin, String identifier) {
-        super(plugin, identifier);
-
+    public Placeholder() {
         Runnable rn = new Runnable() {
             @Override
             public void run() {
@@ -55,6 +54,21 @@ public class Placeholder extends EZPlaceholderHook {
         };
 
         id = Bukkit.getScheduler().scheduleSyncRepeatingTask(SpigotMain.i, rn,0,1);
+    }
+
+    @Override
+    public String getIdentifier() {
+        return "ac";
+    }
+
+    @Override
+    public String getAuthor() {
+        return "NitkaNikita";
+    }
+
+    @Override
+    public String getVersion() {
+        return "1.4";
     }
 
     //ac_gradient_ff0000,00ff00,0000ff_0.8_dradient
