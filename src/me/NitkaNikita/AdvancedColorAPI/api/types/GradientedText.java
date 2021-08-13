@@ -1,6 +1,7 @@
 package me.NitkaNikita.AdvancedColorAPI.api.types;
 
 import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
+import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -29,51 +30,68 @@ public class GradientedText {
             double X
     ){
 
-        String[] split = text.split("");
-        //ArrayList<String> TextElements = new ArrayList<>();
-        //int counter = 0;
-        //while (counter < text.length()){
-        //    String s = split[counter];
-        //    if(s.equals("§")){
-        //        String adding = s;
-        //        adding += split[counter+1];
-        //        if(counter+2 < split.length){
-        //            adding += split[counter+2];
-        //        }
-        //        TextElements.add(adding);
-        //    }else {
-        //        TextElements.add(s);
-        //    }
-        //}
+        //String[] split = text.split("&\\w|.");
 
-        List<String> allMatches = new ArrayList<String>();
+        List<String> split = new ArrayList<String>();
 
         //"(&[0-9a-fA-Fk-orK-OR])?."
 
-        for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("(§[0-9a-fA-Fk-orK-OR])?."), text)) {
-            allMatches.add(match.group());
+        for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("&\\w|."), text)) {
+            split.add(match.group());
         }
 
-
+        boolean frm_l = false;
+        boolean frm_m = false;
+        boolean frm_n = false;
+        boolean frm_o = false;
 
         GradientedText gradient = new GradientedText();
 
+        for (int i = 0; i < split.size(); i++) {
+            if(split.get(i).startsWith("&")){
+                switch (split.get(i).charAt(1)){
+                    case 'l':
+                        frm_l = true;
+                        break;
+                    case 'm':
+                        frm_m = true;
+                        break;
+                    case 'n':
+                        frm_n = true;
+                        break;
+                    case 'o':
+                        frm_o = true;
+                        break;
+                    case 'r':
+                        frm_l = false;
+                        frm_m = false;
+                        frm_n = false;
+                        frm_o = false;
+                        break;
+                } //set formatting
+            }else {
+                float procent = ((float) i/(float)split.size())*100f;
 
-        for (int i = 0; i < text.length(); i++) {
-            float procent = ((float) i/(float)text.length())*100f;
+                int pr = Math.round(procent);
 
-            int pr = Math.round(procent);
+                AdvancedColor ic = InterpolateColor(colors,(double) pr/100, X);
+                int r = ic.color.getRed();
+                int g = ic.color.getGreen();
+                int b = ic.color.getBlue();
 
-            AdvancedColor ic = InterpolateColor(colors,(double) pr/100, X);
-            int r = ic.color.getRed();
-            int g = ic.color.getGreen();
-            int b = ic.color.getBlue();
+                TextComponent comp = new TextComponent(split.get(i));
 
-            TextComponent comp = new TextComponent(split[i]);
+                //formatting
+                comp.setBold(frm_l);
+                comp.setUnderlined(frm_n);
+                comp.setStrikethrough(frm_m);
+                comp.setItalic(frm_o);
 
-            comp.setColor(ChatColor.of("#"+AdvancedColor.rgb2Hex(r,g,b)));
+                comp.setColor(ChatColor.of("#"+AdvancedColor.rgb2Hex(r,g,b)));
 
-            gradient.components.add(comp);
+                gradient.components.add(comp);
+            }
+
         }
 
         return gradient;

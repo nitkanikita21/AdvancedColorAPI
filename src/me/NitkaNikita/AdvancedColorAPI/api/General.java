@@ -1,5 +1,6 @@
 package me.NitkaNikita.AdvancedColorAPI.api;
 
+import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import org.bukkit.ChatColor;
 
 import java.util.logging.Logger;
@@ -10,6 +11,7 @@ public class General {
     public static Logger logger;
 
     public static void On(SessionType type){
+        Debug.setLogger(logger);
         session = type;
         switch (type){
             case SPIGOT:
