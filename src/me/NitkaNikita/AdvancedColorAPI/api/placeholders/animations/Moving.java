@@ -48,7 +48,6 @@ public class Moving implements Animation {
 
     @Override
     public String getText() {
-        //return GradientedText.generateGradient(text,colors,x).getFullText().toLegacyText();
 
         TextComponent txt = new TextComponent();
 

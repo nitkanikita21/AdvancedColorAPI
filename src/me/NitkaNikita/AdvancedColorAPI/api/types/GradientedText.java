@@ -1,7 +1,5 @@
 package me.NitkaNikita.AdvancedColorAPI.api.types;
 
-import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
-import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -33,8 +31,6 @@ public class GradientedText {
         //String[] split = text.split("&\\w|.");
 
         List<String> split = new ArrayList<String>();
-
-        //"(&[0-9a-fA-Fk-orK-OR])?."
 
         for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("&\\w|."), text)) {
             split.add(match.group());
