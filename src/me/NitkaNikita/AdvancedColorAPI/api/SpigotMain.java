@@ -2,6 +2,7 @@ package me.NitkaNikita.AdvancedColorAPI.api;
 
 import me.NitkaNikita.AdvancedColorAPI.api.commands.CommandManager;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
+import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,6 +15,7 @@ public class SpigotMain extends JavaPlugin {
     public void onEnable() {
         getCommand("ac").setExecutor(new CommandManager());
         General.logger = getLogger();
+        Debug.setLogger(getLogger());
         General.On(SessionType.SPIGOT);
         i = this;
 
