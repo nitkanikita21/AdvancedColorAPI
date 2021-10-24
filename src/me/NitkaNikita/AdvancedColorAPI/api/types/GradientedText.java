@@ -1,6 +1,5 @@
 package me.NitkaNikita.AdvancedColorAPI.api.types;
 
-import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -27,11 +26,15 @@ public class GradientedText {
             String text,
             ArrayList<AdvancedColor> colors,
             double X
-    ){
+    ) throws IllegalArgumentException{
+        if (text == null)
+            throw new IllegalArgumentException("Argument \"text\" is null");
+        if (colors == null)
+            throw new IllegalArgumentException("Argument \"colors\" is null");
 
         //String[] split = text.split("&\\w|.");
 
-        List<String> split = new ArrayList<String>();
+        List<String> split = new ArrayList<>();
 
         for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("&\\w|."), text)) {
             split.add(match.group());
@@ -100,18 +103,17 @@ public class GradientedText {
         double total = 0.0;
         double step = 1.0 / (double)(colors.size() - 1);
         double mu = 0.0;
-        double sigma_2 = c;
 
         for (AdvancedColor color : colors)
         {
-            total += Math.exp(-(x - mu) * (x - mu) / (2.0 * sigma_2)) / Math.sqrt(2.0 * Math.PI * sigma_2);
+            total += Math.exp(-(x - mu) * (x - mu) / (2.0 * c)) / Math.sqrt(2.0 * Math.PI * c);
             mu += step;
         }
 
         mu = 0.0;
         for(AdvancedColor color : colors)
         {
-            double percent = Math.exp(-(x - mu) * (x - mu) / (2.0 * sigma_2)) / Math.sqrt(2.0 * Math.PI * sigma_2);
+            double percent = Math.exp(-(x - mu) * (x - mu) / (2.0 * c)) / Math.sqrt(2.0 * Math.PI * c);
             mu += step;
 
             r += color.color.getRed() * percent / total;
