@@ -3,7 +3,8 @@ package me.NitkaNikita.AdvancedColorAPI.api.placeholders;
 import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.animations.Moving;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.api.types.GradientedText;
+import me.NitkaNikita.AdvancedColorAPI.api.types.Components.GradientedText;
+import me.NitkaNikita.AdvancedColorAPI.api.types.Components.SolidColor;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -94,7 +95,7 @@ public class Placeholder extends PlaceholderExpansion {
                 text.append("_").append(args[i]);
             }
 
-            result = GradientedText.generateGradient(text.toString(), colors_text, x).getFullText().toLegacyText();
+            result = new GradientedText(text.toString(), colors_text, x).renderComponent().toLegacyText();
         } else if (args[0].equals("rainbow")) {
 
             StringBuilder text = new StringBuilder(args[1]);
@@ -102,9 +103,9 @@ public class Placeholder extends PlaceholderExpansion {
                 text.append("_").append(args[i]);
             }
 
-            result = GradientedText.generateGradient(text.toString(), colors, 0.4d).getFullText().toLegacyText();
+            result = new GradientedText(text.toString(), colors, 0.4d).renderComponent().toLegacyText();
         }else if (args[0].equals("color")) {
-            ArrayList<AdvancedColor> c = new ArrayList<AdvancedColor>();
+            /*ArrayList<AdvancedColor> c = new ArrayList<AdvancedColor>();
             c.add(new AdvancedColor(args[1]));
 
             StringBuilder text = new StringBuilder(args[2]);
@@ -112,7 +113,9 @@ public class Placeholder extends PlaceholderExpansion {
                 text.append("_").append(args[i]);
             }
 
-            result = GradientedText.generateGradient(text.toString(), c, 0.4d).getFullText().toLegacyText();
+            result = new GradientedText(text.toString(), c, 0.4d).renderComponent().toLegacyText();*/
+
+            result = new SolidColor(args[2],new AdvancedColor(args[1])).renderComponent().toLegacyText();
         } else if (args[0].equals("an")){
             if(animationHashMap.containsKey(params.hashCode())){
                 return animationHashMap.get(params.hashCode()).getText();
