@@ -1,5 +1,6 @@
 package me.NitkaNikita.AdvancedColorAPI.api.placeholders.animations;
 
+import me.NitkaNikita.AdvancedColorAPI.api.General;
 import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Animation;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
@@ -53,7 +54,6 @@ public class Moving implements Animation {
 
     @Override
     public String getText() {
-
         TextComponent txt = new TextComponent();
 
         List<String> split = new ArrayList<String>();

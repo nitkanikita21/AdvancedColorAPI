@@ -1,5 +1,8 @@
-package me.NitkaNikita.AdvancedColorAPI.api.types;
+package me.NitkaNikita.AdvancedColorAPI.api.types.Components;
 
+import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
+import me.NitkaNikita.AdvancedColorAPI.api.types.BaseChatComponent;
+import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -9,32 +12,34 @@ import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-public class GradientedText {
+public class GradientedText extends BaseChatComponent {
     private ArrayList<TextComponent> components = new ArrayList<>();
 
-    public TextComponent getFullText(){
+    private String text;
+    private ArrayList<AdvancedColor> colors;
+    private double X;
+
+    public TextComponent renderComponent(){
         TextComponent m = new TextComponent();
 
         for (TextComponent c : components) {
             m.addExtra(c);
         }
 
+        m.addExtra(super.renderComponent());
+
         return m;
     }
 
-    public static GradientedText generateGradient(
+    public GradientedText(
             String text,
             ArrayList<AdvancedColor> colors,
             double X
-    ) throws IllegalArgumentException{
-        if (text == null)
-            throw new IllegalArgumentException("Argument \"text\" is null");
-        if (colors == null)
-            throw new IllegalArgumentException("Argument \"colors\" is null");
+    ){
 
         //String[] split = text.split("&\\w|.");
 
-        List<String> split = new ArrayList<>();
+        List<String> split = new ArrayList<String>();
 
         for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("&\\w|."), text)) {
             split.add(match.group());
@@ -45,7 +50,6 @@ public class GradientedText {
         boolean frm_n = false;
         boolean frm_o = false;
 
-        GradientedText gradient = new GradientedText();
 
         for (int i = 0; i < split.size(); i++) {
             if(split.get(i).startsWith("&")){
@@ -75,9 +79,6 @@ public class GradientedText {
                 int pr = Math.round(procent);
 
                 AdvancedColor ic = InterpolateColor(colors,(double) pr/100, X);
-                int r = ic.color.getRed();
-                int g = ic.color.getGreen();
-                int b = ic.color.getBlue();
 
                 TextComponent comp = new TextComponent(split.get(i));
 
@@ -87,14 +88,14 @@ public class GradientedText {
                 comp.setStrikethrough(frm_m);
                 comp.setItalic(frm_o);
 
-                comp.setColor(ChatColor.of("#"+AdvancedColor.rgb2Hex(r,g,b)));
+                comp.setColor(ChatColor.of("#"+ic.getHex()));
 
-                gradient.components.add(comp);
+                components.add(comp);
             }
 
         }
 
-        return gradient;
+
     }
 
     public static AdvancedColor InterpolateColor(ArrayList<AdvancedColor> colors, double x, double c)
@@ -103,17 +104,18 @@ public class GradientedText {
         double total = 0.0;
         double step = 1.0 / (double)(colors.size() - 1);
         double mu = 0.0;
+        double sigma_2 = c;
 
         for (AdvancedColor color : colors)
         {
-            total += Math.exp(-(x - mu) * (x - mu) / (2.0 * c)) / Math.sqrt(2.0 * Math.PI * c);
+            total += Math.exp(-(x - mu) * (x - mu) / (2.0 * sigma_2)) / Math.sqrt(2.0 * Math.PI * sigma_2);
             mu += step;
         }
 
         mu = 0.0;
         for(AdvancedColor color : colors)
         {
-            double percent = Math.exp(-(x - mu) * (x - mu) / (2.0 * c)) / Math.sqrt(2.0 * Math.PI * c);
+            double percent = Math.exp(-(x - mu) * (x - mu) / (2.0 * sigma_2)) / Math.sqrt(2.0 * Math.PI * sigma_2);
             mu += step;
 
             r += color.color.getRed() * percent / total;

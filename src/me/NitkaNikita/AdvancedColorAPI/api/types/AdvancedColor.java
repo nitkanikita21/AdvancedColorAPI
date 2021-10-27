@@ -16,7 +16,14 @@ public class AdvancedColor {
         color = hex2Rgb(hex);
     }
 
+    public String getHex(){
+        return  AdvancedColor.rgb2Hex(color.getRed(),color.getGreen(),color.getBlue());
+    }
+
     public static Color hsl2rgb(float h, float s, float l){
+
+
+
         return Color.getHSBColor(h,s,l);
     }
     public static String rgb2Hex(int r, int g, int b) {
