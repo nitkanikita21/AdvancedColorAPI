@@ -2,10 +2,11 @@ package me.NitkaNikita.AdvancedColorAPI.api.types;
 
 import net.md_5.bungee.api.chat.TextComponent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BaseChatComponent implements Cloneable {
-    protected List<BaseChatComponent> _components;
+    protected List<BaseChatComponent> _components = new ArrayList<>();
 
     public TextComponent renderComponent() {
         TextComponent txt = new TextComponent();
