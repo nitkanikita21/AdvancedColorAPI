@@ -16,6 +16,18 @@ public class AdvancedColor {
         color = hex2Rgb(hex);
     }
 
+    public AdvancedColor invert() {
+        int r = 255 - this.color.getRed();
+        int g = 255 - this.color.getGreen();
+        int b = 255 - this.color.getBlue();
+
+        if ((r + g + b > 740) || (r + g + b < 20)) {
+            return new AdvancedColor(new Color(255, 255, 40));
+        } else {
+            return new AdvancedColor(new Color(r, g, b));
+        }
+    }
+
     public String getHex(){
         return  AdvancedColor.rgb2Hex(color.getRed(),color.getGreen(),color.getBlue());
     }

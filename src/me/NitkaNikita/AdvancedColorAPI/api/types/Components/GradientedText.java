@@ -15,9 +15,9 @@ import java.util.regex.Pattern;
 public class GradientedText extends BaseChatComponent {
     private ArrayList<TextComponent> components = new ArrayList<>();
 
-    private String text;
-    private ArrayList<AdvancedColor> colors;
-    private double X;
+    private String _text;
+    private ArrayList<AdvancedColor> _colors;
+    private double _X;
 
     public TextComponent renderComponent(){
         TextComponent m = new TextComponent();
@@ -31,17 +31,26 @@ public class GradientedText extends BaseChatComponent {
         return m;
     }
 
-    public GradientedText(
-            String text,
-            ArrayList<AdvancedColor> colors,
-            double X
-    ){
+    public void addColor(AdvancedColor c){
+        _colors.add(c);
+    }
 
-        //String[] split = text.split("&\\w|.");
+    public void setText(String text) {
+        _text = text;
+    }
 
+    public void setX(double x) {
+        _X = x;
+    }
+
+    public void setColors(ArrayList<AdvancedColor> colors) {
+        _colors = colors;
+    }
+
+    public void generate(){
         List<String> split = new ArrayList<String>();
 
-        for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("&\\w|."), text)) {
+        for (MatchResult match : RegExpUtils.allMatches(Pattern.compile("&\\w|."), _text)) {
             split.add(match.group());
         }
 
@@ -78,7 +87,7 @@ public class GradientedText extends BaseChatComponent {
 
                 int pr = Math.round(procent);
 
-                AdvancedColor ic = InterpolateColor(colors,(double) pr/100, X);
+                AdvancedColor ic = InterpolateColor(_colors,(double) pr/100, _X);
 
                 TextComponent comp = new TextComponent(split.get(i));
 
@@ -94,8 +103,22 @@ public class GradientedText extends BaseChatComponent {
             }
 
         }
+    }
 
+    public GradientedText(
+            String text,
+            ArrayList<AdvancedColor> colors,
+            double X
+    ){
 
+        _text = text;
+        _colors = colors;
+        _X = X;
+
+        //String[] split = text.split("&\\w|.");
+        if(colors.size() != 0){
+            generate();
+        }
     }
 
     public static AdvancedColor InterpolateColor(ArrayList<AdvancedColor> colors, double x, double c)
