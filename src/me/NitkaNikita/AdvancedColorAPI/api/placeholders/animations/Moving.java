@@ -4,7 +4,7 @@ import me.NitkaNikita.AdvancedColorAPI.api.General;
 import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Animation;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.api.types.GradientedText;
+import me.NitkaNikita.AdvancedColorAPI.api.types.Components.GradientedText;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
