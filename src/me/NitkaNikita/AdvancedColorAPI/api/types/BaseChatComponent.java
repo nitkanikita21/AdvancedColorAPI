@@ -17,6 +17,10 @@ public abstract class BaseChatComponent implements Cloneable {
         return txt;
     }
 
+    public String getJsonText(){
+        return renderComponent().toLegacyText();
+    }
+
     public void addComponent(BaseChatComponent component){
         _components.add(component);
     }

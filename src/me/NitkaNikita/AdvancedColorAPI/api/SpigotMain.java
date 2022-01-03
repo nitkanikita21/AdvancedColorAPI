@@ -2,6 +2,13 @@ package me.NitkaNikita.AdvancedColorAPI.api;
 
 import me.NitkaNikita.AdvancedColorAPI.api.commands.CommandManager;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.PlaceholderRegister;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.placeholders.AnimationsPlaceholder;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.placeholders.GradientPlaceholder;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.placeholders.RainbowPlaceholder;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.placeholders.SolidColorPlaceholder;
+import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
+import me.NitkaNikita.AdvancedColorAPI.api.types.builders.GradientTextBuilder;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
@@ -20,7 +27,15 @@ public class SpigotMain extends JavaPlugin {
         i = this;
 
         if(Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")){
-            new Placeholder().register();
+            PlaceholderRegister placeholderRegister = new PlaceholderRegister();
+
+            placeholderRegister
+                    .registerPlaceholder(new AnimationsPlaceholder())
+                    .registerPlaceholder(new GradientPlaceholder())
+                    .registerPlaceholder(new SolidColorPlaceholder())
+                    .registerPlaceholder(new RainbowPlaceholder());
+
+            placeholderRegister.register();
         }
     }
 }

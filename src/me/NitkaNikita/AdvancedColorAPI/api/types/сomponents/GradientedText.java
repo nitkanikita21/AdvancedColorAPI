@@ -1,8 +1,7 @@
-package me.NitkaNikita.AdvancedColorAPI.api.types.Components;
+package me.NitkaNikita.AdvancedColorAPI.api.types.сomponents;
 
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
 import me.NitkaNikita.AdvancedColorAPI.api.types.BaseChatComponent;
-import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -30,6 +29,8 @@ public class GradientedText extends BaseChatComponent {
 
         return m;
     }
+
+
 
     public void addColor(AdvancedColor c){
         _colors.add(c);

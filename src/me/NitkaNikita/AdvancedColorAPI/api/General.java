@@ -1,5 +1,6 @@
 package me.NitkaNikita.AdvancedColorAPI.api;
 
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.PlaceholderRegister;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import org.bukkit.ChatColor;
 
@@ -9,6 +10,8 @@ public class General {
 
     public static SessionType session;
     public static Logger logger;
+
+    public static final float vesrion = 1.6f;
 
     public static void On(SessionType type){
 
@@ -29,5 +32,7 @@ public class General {
         logger.info(ChatColor.RED+"It contains commands for testing the plugin!");
         logger.info(ChatColor.RED+"(If you are using Spigot)");
         logger.info(ChatColor.DARK_RED+"==============================================");
+
+
     }
 }

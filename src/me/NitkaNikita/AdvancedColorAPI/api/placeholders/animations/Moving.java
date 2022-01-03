@@ -1,11 +1,9 @@
 package me.NitkaNikita.AdvancedColorAPI.api.placeholders.animations;
 
-import me.NitkaNikita.AdvancedColorAPI.api.General;
 import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
-import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Animation;
+import me.NitkaNikita.AdvancedColorAPI.api.placeholders.IAnimation;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.api.types.Components.GradientedText;
-import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
+import me.NitkaNikita.AdvancedColorAPI.api.types.сomponents.GradientedText;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -16,7 +14,7 @@ import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-public class Moving implements Animation {
+public class Moving implements IAnimation {
     String text;
     ArrayList<AdvancedColor> colors;
 
@@ -53,7 +51,7 @@ public class Moving implements Animation {
     }
 
     @Override
-    public String getText() {
+    public TextComponent getText() {
         TextComponent txt = new TextComponent();
 
         List<String> split = new ArrayList<String>();
@@ -114,6 +112,6 @@ public class Moving implements Animation {
             }
         }
 
-        return txt.toLegacyText();
+        return txt;
     }
 }

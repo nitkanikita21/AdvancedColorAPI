@@ -1,23 +1,23 @@
-package me.NitkaNikita.AdvancedColorAPI.api.types.Components;
+package me.NitkaNikita.AdvancedColorAPI.api.types.сomponents;
 
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
 import me.NitkaNikita.AdvancedColorAPI.api.types.BaseChatComponent;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 
-public class SolidColor extends BaseChatComponent {
+public class SolidText extends BaseChatComponent {
     private AdvancedColor _color;
     private String _text;
     @Override
     public TextComponent renderComponent() {
-        TextComponent txt = new TextComponent(_text);
+        TextComponent txt = new TextComponent(_text.replaceAll("&","\u00A7"));
         txt.setColor(ChatColor.of("#"+_color.getHex()));
 
         txt.addExtra(super.renderComponent());
         return txt;
     }
 
-    public SolidColor(String text, AdvancedColor color){
+    public SolidText(String text, AdvancedColor color){
         _color = color;
         _text = text;
     }

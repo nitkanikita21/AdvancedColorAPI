@@ -13,7 +13,7 @@ public class AdvancedColor {
        this.color = color;
     }
     public AdvancedColor(String hex){
-        color = hex2Rgb(hex);
+        color = hex2Rgb(hex.replaceAll("#",""));
     }
 
     public AdvancedColor invert() {
