@@ -16,21 +16,6 @@ public class CommandManager implements CommandExecutor {
 
         if(args.length <= 0){
             commandSender.sendMessage(ChatColor.AQUA+"[AdvacedColorAPI]"+ChatColor.GRAY+" version: "+ChatColor.LIGHT_PURPLE+ General.vesrion);
-            commandSender.sendMessage(
-                    new GradientTextBuilder()
-                    .text("&lEasy gradient!")
-                    .addColor("#fc8003")
-                    .addColor("#fc036b")
-                    .addColor("#fc8003")
-                    .blur(0.05)
-                    .build().getJsonText()
-            );
-            commandSender.sendMessage(
-                    new SolidTextBuilder()
-                    .text("&oEasy solid color")
-                    .color("#007878")
-                    .build().getJsonText()
-            );
         }else{
             AdvancedColor color = new AdvancedColor(args[0]);
 

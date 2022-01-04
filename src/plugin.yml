@@ -1,5 +1,5 @@
 name: AdvancedColorAPI
-version: 1.6
+version: 1.6.1
 main: me.NitkaNikita.AdvancedColorAPI.api.SpigotMain
 author: NitkaNikita
 api-version: 1.16

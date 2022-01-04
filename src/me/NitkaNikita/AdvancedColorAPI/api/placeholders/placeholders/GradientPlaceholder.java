@@ -3,7 +3,9 @@ package me.NitkaNikita.AdvancedColorAPI.api.placeholders.placeholders;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
 import me.NitkaNikita.AdvancedColorAPI.api.types.сomponents.GradientedText;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public class GradientPlaceholder extends Placeholder {
     }
 
     @Override
-    public TextComponent render(String[] args) {
+    public TextComponent render(String[] args, Player p) {
         if (
                 args.length < 4
         ) return new TextComponent("args error");
@@ -29,6 +31,6 @@ public class GradientPlaceholder extends Placeholder {
             text.append("_").append(args[i]);
         }
 
-        return new GradientedText(text.toString(), colors_text, x).renderComponent();
+        return new GradientedText(text.toString().replaceAll("\\$\\{nick}",p.getName()), colors_text, x).renderComponent();
     }
 }

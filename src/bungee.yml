@@ -1,4 +1,4 @@
-name: me.NitkaNikita.AdvancedColorAPI.AdvancedColorAPI
-version: 0.1
+name: AdvancedColorAPI
+version: 1.6.1
 main: me.NitkaNikita.me.NitkaNikita.AdvancedColorAPI.AdvancedColorAPI.api.BungeeMain
 author: NitkaNikita

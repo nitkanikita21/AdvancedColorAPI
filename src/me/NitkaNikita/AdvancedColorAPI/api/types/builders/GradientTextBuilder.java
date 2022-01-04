@@ -4,6 +4,7 @@ import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
 import me.NitkaNikita.AdvancedColorAPI.api.types.сomponents.GradientedText;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class GradientTextBuilder{
 
@@ -27,6 +28,16 @@ public class GradientTextBuilder{
 
     public GradientTextBuilder addColor(String hex){
         colors.add(new AdvancedColor(hex));
+        return this;
+    }
+
+    public GradientTextBuilder addColors(ArrayList<AdvancedColor> colors){
+        this.colors.addAll(colors);
+        return this;
+    }
+
+    public GradientTextBuilder addColors(AdvancedColor[] colors){
+        this.colors.addAll(Arrays.asList(colors));
         return this;
     }
 

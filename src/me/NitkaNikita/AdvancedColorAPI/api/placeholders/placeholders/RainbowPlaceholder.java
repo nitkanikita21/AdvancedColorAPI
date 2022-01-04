@@ -4,8 +4,10 @@ import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
 import me.NitkaNikita.AdvancedColorAPI.api.types.сomponents.GradientedText;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 
@@ -48,12 +50,12 @@ public class RainbowPlaceholder extends Placeholder {
     }
 
     @Override
-    public TextComponent render(String[] args) {
+    public TextComponent render(String[] args, Player p) {
         StringBuilder text = new StringBuilder(args[1]);
         for(int i = 2; i < args.length; i++){
             text.append("_").append(args[i]);
         }
 
-        return new GradientedText(text.toString(), colors, 0.4d).renderComponent();
+        return new GradientedText(text.toString().replaceAll("\\$\\{nick}",p.getName()), colors, 0.4d).renderComponent();
     }
 }

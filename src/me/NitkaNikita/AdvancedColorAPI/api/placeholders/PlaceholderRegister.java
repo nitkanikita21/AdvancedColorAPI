@@ -47,7 +47,7 @@ public class PlaceholderRegister extends PlaceholderExpansion {
         //General.logger.info(args.toString());
 
         if(placeholders.containsKey(args[0])){
-            result = placeholders.get(args[0]).render(args).toLegacyText();
+            result = placeholders.get(args[0]).render(args, p).toLegacyText();
         }else{
             result = "placeholder undefined";
         }

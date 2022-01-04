@@ -3,7 +3,9 @@ package me.NitkaNikita.AdvancedColorAPI.api.placeholders.placeholders;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.animations.Moving;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -18,7 +20,7 @@ public class AnimationsPlaceholder extends Placeholder {
     }
 
     @Override
-    public TextComponent render(String[] args) {
+    public TextComponent render(String[] args, Player p) {
         if(animationHashMap.containsKey(Arrays.hashCode(args))){
             return animationHashMap.get(Arrays.hashCode(args)).getText();
         }
@@ -36,7 +38,7 @@ public class AnimationsPlaceholder extends Placeholder {
                 text.append("_").append(args[i]);
             }
 
-            Moving an = new Moving(text.toString(),speed,x,colors_text);
+            Moving an = new Moving(text.toString().replaceAll("\\$\\{nick}",p.getName()), speed,x,colors_text);
 
             animationHashMap.put(Arrays.hashCode(args),an);
             return an.getText();
