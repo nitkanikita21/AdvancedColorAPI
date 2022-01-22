@@ -21,6 +21,16 @@ public class AnimationsPlaceholder extends Placeholder {
 
     @Override
     public TextComponent render(String[] args, Player p) {
+
+        StringBuilder textBuilder = new StringBuilder(args[5]);
+        for(int i = 6; i < args.length; i++){
+            textBuilder.append("_").append(args[i]);
+        }
+        String text = textBuilder.toString().replaceAll("\\$\\{nick}",p.getName());
+
+        if(animationHashMap.containsKey(text.hashCode())){
+            return animationHashMap.get(text.hashCode()).getText();
+        }
         if(args[1].equals("move")){
             double x = Double.parseDouble(args[2]);
             int speed = Integer.parseInt(args[3]);
@@ -30,14 +40,9 @@ public class AnimationsPlaceholder extends Placeholder {
                 colors_text.add(new AdvancedColor(c));
             }
 
-            StringBuilder text = new StringBuilder(args[5]);
-            for(int i = 6; i < args.length; i++){
-                text.append("_").append(args[i]);
-            }
+            Moving an = new Moving(text, speed,x,colors_text);
 
-            Moving an = new Moving(text.toString().replaceAll("\\$\\{nick}",p.getName()), speed,x,colors_text);
-
-            animationHashMap.put(Arrays.hashCode(args),an);
+            animationHashMap.put(text.hashCode(),an);
             return an.getText();
         }else {
             return new TextComponent("undefined animation");
