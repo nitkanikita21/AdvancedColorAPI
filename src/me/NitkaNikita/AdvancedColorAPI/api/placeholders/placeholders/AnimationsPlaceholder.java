@@ -21,9 +21,6 @@ public class AnimationsPlaceholder extends Placeholder {
 
     @Override
     public TextComponent render(String[] args, Player p) {
-        if(animationHashMap.containsKey(Arrays.hashCode(args))){
-            return animationHashMap.get(Arrays.hashCode(args)).getText();
-        }
         if(args[1].equals("move")){
             double x = Double.parseDouble(args[2]);
             int speed = Integer.parseInt(args[3]);

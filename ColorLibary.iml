@@ -50,5 +50,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="spigot-1.16.4" level="project" />
+    <orderEntry type="library" name="BungeeCord" level="project" />
   </component>
 </module>
