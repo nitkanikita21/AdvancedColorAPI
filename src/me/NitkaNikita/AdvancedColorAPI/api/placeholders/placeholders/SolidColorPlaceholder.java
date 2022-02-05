@@ -13,6 +13,6 @@ public class SolidColorPlaceholder extends Placeholder {
 
     @Override
     public TextComponent render(String[] args, Player p) {
-        return new SolidText(args[2].toString().replaceAll("\\{nick}",p.getName()),new AdvancedColor(args[1])).renderComponent();
+        return new SolidText(args[2].toString().replaceAll("\\$\\{nick}",p.getName()),new AdvancedColor(args[1])).renderComponent();
     }
 }

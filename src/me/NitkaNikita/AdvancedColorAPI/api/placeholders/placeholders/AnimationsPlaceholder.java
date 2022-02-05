@@ -26,7 +26,7 @@ public class AnimationsPlaceholder extends Placeholder {
         for (String arg : args) {
             allArgsBuilder.append("_").append(arg);
         }
-        String argsText = allArgsBuilder.toString();
+        String argsText = allArgsBuilder.toString().replaceAll("\\$\\{nick}",p.getName());
 
         StringBuilder textBuilder = new StringBuilder(args[5]);
         for(int i = 6; i < args.length; i++){

@@ -41,7 +41,7 @@ public class PlaceholderRegister extends PlaceholderExpansion {
 
     @Override
     public String onPlaceholderRequest(Player p, String params) {
-        String[] args = params.split("_");
+        String[] args = params.split("[_;]");
         String result = "";
 
         //General.logger.info(args.toString());

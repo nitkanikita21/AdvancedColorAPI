@@ -11,7 +11,7 @@ public class General {
     public static SessionType session;
     public static Logger logger;
 
-    public static final String vesrion = "1.6.2";
+    public static final String vesrion = "1.6.3";
 
     public static void On(SessionType type){
 
