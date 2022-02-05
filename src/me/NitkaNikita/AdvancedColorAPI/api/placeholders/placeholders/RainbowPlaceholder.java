@@ -4,6 +4,7 @@ import me.NitkaNikita.AdvancedColorAPI.api.SpigotMain;
 import me.NitkaNikita.AdvancedColorAPI.api.placeholders.Placeholder;
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
 import me.NitkaNikita.AdvancedColorAPI.api.types.сomponents.GradientedText;
+import me.NitkaNikita.AdvancedColorAPI.api.utils.Debug;
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -56,6 +57,7 @@ public class RainbowPlaceholder extends Placeholder {
             text.append("_").append(args[i]);
         }
 
-        return new GradientedText(text.toString().replaceAll("\\$\\{nick}",p.getName()), colors, 0.4d).renderComponent();
+        GradientedText gradientedText = new GradientedText(text.toString().replaceAll("\\$\\{nick}", p.getName()), colors, 0.4d);
+        return gradientedText.renderComponent();
     }
 }

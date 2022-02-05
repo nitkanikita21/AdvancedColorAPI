@@ -1,7 +1,7 @@
 package me.NitkaNikita.AdvancedColorAPI.api.types.сomponents;
 
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.api.types.BaseChatComponent;
+import me.NitkaNikita.AdvancedColorAPI.api.types.BaseTextComponent;
 import me.NitkaNikita.AdvancedColorAPI.api.utils.RegExpUtils;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-public class GradientedText extends BaseChatComponent {
+public class GradientedText extends BaseTextComponent {
     private ArrayList<TextComponent> components = new ArrayList<>();
 
     private String _text;
@@ -59,6 +59,8 @@ public class GradientedText extends BaseChatComponent {
         boolean frm_m = false;
         boolean frm_n = false;
         boolean frm_o = false;
+        boolean frm_k = false;
+
 
 
         for (int i = 0; i < split.size(); i++) {
@@ -76,11 +78,14 @@ public class GradientedText extends BaseChatComponent {
                     case 'o':
                         frm_o = true;
                         break;
+                    case 'k':
+                        frm_k = true;
                     case 'r':
                         frm_l = false;
                         frm_m = false;
                         frm_n = false;
                         frm_o = false;
+                        frm_k = false;
                         break;
                 } //set formatting
             }else {
@@ -97,6 +102,7 @@ public class GradientedText extends BaseChatComponent {
                 comp.setUnderlined(frm_n);
                 comp.setStrikethrough(frm_m);
                 comp.setItalic(frm_o);
+                comp.setObfuscated(frm_k);
 
                 comp.setColor(ChatColor.of("#"+ic.getHex()));
 

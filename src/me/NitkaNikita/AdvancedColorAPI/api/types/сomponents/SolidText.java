@@ -1,11 +1,11 @@
 package me.NitkaNikita.AdvancedColorAPI.api.types.сomponents;
 
 import me.NitkaNikita.AdvancedColorAPI.api.types.AdvancedColor;
-import me.NitkaNikita.AdvancedColorAPI.api.types.BaseChatComponent;
+import me.NitkaNikita.AdvancedColorAPI.api.types.BaseTextComponent;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 
-public class SolidText extends BaseChatComponent {
+public class SolidText extends BaseTextComponent {
     private AdvancedColor _color;
     private String _text;
     @Override
