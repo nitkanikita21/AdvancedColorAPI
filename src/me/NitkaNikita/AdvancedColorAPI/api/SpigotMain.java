@@ -36,6 +36,9 @@ public class SpigotMain extends JavaPlugin {
                     .registerPlaceholder(new RainbowPlaceholder());
 
             placeholderRegister.register();
+            Bukkit.getScheduler().runTaskTimer(this,()->{
+              if(!placeholderRegister.isRegistered()) placeholderRegister.register();
+            },20,100);
         }
     }
 }
